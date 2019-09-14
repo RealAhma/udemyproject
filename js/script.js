@@ -1,7 +1,17 @@
 ' use strict ' ;
 
-var money = +prompt ("What is your budget?", ""),
-    time = prompt ("Введите дату YYYY-MM-DD", "");
+let money, time;
+
+function start() {
+    money = +prompt ("Ваш бюджет на месяц?", "");
+    time = prompt ("Введите дату в формате YYYY-MM-DD", "");
+
+    while (isNaN(money) || money == "" || money == null) {
+        money = +prompt ("Ваш бюджет на месяц?", ""); 
+    }
+
+}
+start();
 
 var appData = {
     budget: money,
@@ -76,6 +86,17 @@ function detectLevel() {                                                // Ра�
     }
 }
 detectLevel();
+
+function checkSavings() {
+    if (appData.savings == true) {
+        let save = +prompt("Какова сумма накоплений?"),
+            percent = +prompt("Под какой процент?");
+
+            appData.monthIncome = save/100/12*percent;
+            alert("Доход с Вашего депозита в месяц: " + appData.monthIncome);
+    }
+}
+checkSavings();
 
 function chooseOptExpenses() {                             // Функция для определения необязательных расходов
 
